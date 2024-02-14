@@ -1,12 +1,12 @@
 import torch
-from simple_fugw.utils import compute_unnormalized_kl
 
-def cost(P, w_s, w_t, ws_wt, D_s, D_t, F, rho, eps, alpha, transpose):
+from fugw_solver.utils import compute_unnormalized_kl
+
+def cost(P, w_s, w_t, ws_wt, D_s, D_t, F, rho, eps, alpha):
 
     D_s_sqr, D_t_sqr = D_s**2, D_t**2 
     
-    if transpose:
-        D_s, D_t, D_s_sqr, D_t_sqr = D_s.T, D_t.T, D_s_sqr.T, D_t_sqr.T
+    D_s, D_t, D_s_sqr, D_t_sqr = D_s.T, D_t.T, D_s_sqr.T, D_t_sqr.T
 
     P1, P2 = P.sum(1), P.sum(0)
 
