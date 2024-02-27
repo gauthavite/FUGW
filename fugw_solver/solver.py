@@ -4,7 +4,12 @@ from fugw_solver.loss import compute_fugw_loss
 from fugw_solver.cost import cost
 from fugw_solver.scaling import scaling 
 
-def solver(source_features, target_features, source_geometry, target_geometry, w_s, w_t, device, nits_bcd=10, nits_uot=1000, alpha=0.5, rho=1, eps=1e-2):
+def solver(source_features, target_features, source_geometry, target_geometry, w_s=None, w_t=None, device="cpu", nits_bcd=10, nits_uot=1000, alpha=0.5, rho=1, eps=1e-2):
+    if w_s is None:
+        w_s = torch.ones(source_features.shape[1], device=device) / source_features.shape[1]
+    if w_t is None:
+        w_t = torch.ones(target_features.shape[1], device=device) / target_features.shape[1]
+
     w_sxw_t = w_s[:, None] * w_t[None, :]
     P = w_sxw_t / w_sxw_t.sum()
 
