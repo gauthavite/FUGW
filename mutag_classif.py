@@ -44,7 +44,7 @@ def predict(args):
 # Multiprocessing
 def knn(rho, alpha, k, features, adjacencies, y):
     accuracy = 0
-    print(f"Starting the knn for rho={rho} and k={k}")
+    print(f"Starting the knn for rho={rho}, alpha={alpha}, k={k}")
     args = [(i, k, rho, alpha, features, adjacencies, y) for i in range(n)]  # Prepare arguments for each process
 
     with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
@@ -54,7 +54,7 @@ def knn(rho, alpha, k, features, adjacencies, y):
     for i, prediction in enumerate(predictions):
         accuracy += (prediction == y[i])
     accuracy /= n
-    print(f"The accuracy with rho={rho} and k={k} is {accuracy}")
+    print(f"The accuracy with rho={rho}, alpha={alpha}, k={k} is {accuracy}")
     return accuracy
 
 if __name__ == '__main__':
@@ -83,7 +83,7 @@ if __name__ == '__main__':
             for k in [5, 10, 15]:
                 train_accuracy = knn(rho, alpha, k, features_train, adjacencies_train, y_train)
                 best_params = (rho, alpha, k)
-    print(f"The best parameters are alpha={alpha}, rho={rho}, k={k}")
+    print(f"The best parameters are rho={rho}, alpha={alpha}, k={k}")
     
     print("Testing...")
     test_accuracy = knn(100, features, adjacencies, y)
