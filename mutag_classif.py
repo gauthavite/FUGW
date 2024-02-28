@@ -44,6 +44,7 @@ def predict(args):
 # Multiprocessing
 def knn(rho, alpha, k, features, adjacencies, y):
     accuracy = 0
+    n = len(features)
     print(f"Starting the knn for rho={rho}, alpha={alpha}, k={k}")
     args = [(i, k, rho, alpha, features, adjacencies, y) for i in range(n)]  # Prepare arguments for each process
 
@@ -62,7 +63,6 @@ if __name__ == '__main__':
         data = json.load(f)
 
     features = data["node_feat"]
-    n = len(features)
     y = data["y"]
     y = list(map(lambda x: x[0], y))
     adjacencies = []
