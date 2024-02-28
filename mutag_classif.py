@@ -71,9 +71,10 @@ if __name__ == '__main__':
         adj[sources, targets] = 1
         adjacencies.append(adj)
 
-    features_train, features_test = features[:150], features[150:]
-    y_train, y_test = y[:150], y[150:]
-    adjacencies_train, adjacencies_test = adjacencies[:150], adjacencies[150:]
+    TRAIN_SIZE = 50
+    features_train, features_test = features[:TRAIN_SIZE], features[TRAIN_SIZE:]
+    y_train, y_test = y[:TRAIN_SIZE], y[TRAIN_SIZE:]
+    adjacencies_train, adjacencies_test = adjacencies[:TRAIN_SIZE], adjacencies[TRAIN_SIZE:]
     
     print("Finding the best hyperparameters ...")
     best_accuracy = float("inf")
@@ -86,5 +87,5 @@ if __name__ == '__main__':
     print(f"The best parameters are rho={rho}, alpha={alpha}, k={k}")
     
     print("Testing...")
-    test_accuracy = knn(100, features, adjacencies, y)
+    test_accuracy = knn(*best_params, features_test, adjacencies_test, y_test)
     print(f"The test accuracy is {test_accuracy}")
