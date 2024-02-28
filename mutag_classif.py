@@ -101,7 +101,7 @@ if __name__ == '__main__':
                 if train_accuracy < best_accuracy:
                     best_accuracy = train_accuracy
                     best_params = (rho, alpha, k)
-    print(f"The best parameters are rho={rho}, alpha={alpha}, k={k}")
+    print(f"The best parameters are rho={best_params[0]}, alpha={best_params[1]}, k={best_params[2]}")
     
     print("Testing...")
     test_accuracy = knn(*best_params, features_test, distance_matrices_test, y_test)
