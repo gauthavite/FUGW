@@ -48,7 +48,7 @@ def knn(rho, alpha, k, features, adjacencies, y):
     args = [(i, k, rho, alpha, features, adjacencies, y) for i in range(n)]  # Prepare arguments for each process
 
     with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
-        predictions = tqdm(pool.imap(predict, args), total=n)
+        predictions = list(tqdm(pool.imap(predict, args), total=n))
 
     # Calculate accuracy based on the returned predictions
     for i, prediction in enumerate(predictions):
