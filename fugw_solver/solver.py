@@ -13,11 +13,11 @@ def solver(source_features, target_features, source_geometry, target_geometry, w
     w_sxw_t = w_s[:, None] * w_t[None, :]
     P = w_sxw_t / w_sxw_t.sum()
 
-    F_s = torch.tensor(source_features.T, device=device)
-    F_t = torch.tensor(target_features.T, device=device)
+    F_s = source_features.T.clone().detach().to(device)
+    F_t = target_features.T.clone().detach().to(device)
     F = torch.cdist(F_s, F_t, p=2) ** 2
-    D_s = torch.tensor(source_geometry, device=device)
-    D_t = torch.tensor(target_geometry, device=device)
+    D_s = source_geometry.clone().detach().to(device)
+    D_t = target_geometry.clone().detach().to(device)
 
     Q = P
 
