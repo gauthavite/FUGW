@@ -92,13 +92,13 @@ if __name__ == '__main__':
     distance_matrices_train, distance_matrices_test = distance_matrices[:TRAIN_SIZE], distance_matrices[TRAIN_SIZE:]
     
     print("Finding the best hyperparameters ...")
-    best_accuracy = float("inf")
+    best_accuracy = 0
     best_params = None
     for rho in [0.1, 1, 10]:
         for alpha in [0.4, 0.5, 0.6]:
             for k in [5, 10, 15]:
                 train_accuracy = knn(rho, alpha, k, features_train, distance_matrices_train, y_train)
-                if train_accuracy < best_accuracy:
+                if train_accuracy > best_accuracy:
                     best_accuracy = train_accuracy
                     best_params = (rho, alpha, k)
     print(f"The best parameters are rho={best_params[0]}, alpha={best_params[1]}, k={best_params[2]}")
