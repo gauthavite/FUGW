@@ -25,7 +25,7 @@ solver(source_features, target_features, source_geometry, target_geometry, w_s=N
 The script `graph_fugw_utility.py` provides a simple introduction to the utility of the unbalance term in FUGW.
 
 ![Transport Diagram](figures/transport.png)
-*An illustrative example showing the transport problem solved by the FUGW approach, highlighting the unbalance term's effectiveness.*
+*An illustrative example showing the transport problem solved by the FUGW, highlighting the unbalance term's effectiveness.*
 
 #### Applying FUGW in k-NN Graph Classification
 
